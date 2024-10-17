@@ -91,7 +91,7 @@ function TopMenu() {
             >
               {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography sx={{ textAlign: 'center', color: '#3ecf8e' }}>{page}</Typography>
+                  <Typography sx={{ textAlign: 'center',  }}>{page}</Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -113,7 +113,7 @@ function TopMenu() {
               textDecoration: 'none',
             }}
           >
-            LOGO
+            CLIMAFIT
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
@@ -150,7 +150,7 @@ function TopMenu() {
             >
               {settings.map((setting) => (
                 <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography sx={{ textAlign: 'center', color: '#3ecf8e' }}>{setting}</Typography>
+                  <Typography sx={{ textAlign: 'center' }}>{setting}</Typography>
                 </MenuItem>
               ))}
             </Menu>
