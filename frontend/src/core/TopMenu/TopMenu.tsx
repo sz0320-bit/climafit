@@ -41,7 +41,7 @@ function TopMenu() {
 
   return (
     <AppBar position="static" color="default">
-      <Container maxWidth='false'>
+      <Container maxWidth={false}>
         <Toolbar disableGutters>
           <AdbIcon sx={{ display: { xs: 'none', md: 'flex', color: '#3ecf8e' }, mr: 1 }} />
           <Typography
