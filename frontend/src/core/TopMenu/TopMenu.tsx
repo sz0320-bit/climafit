@@ -47,6 +47,7 @@ function TopMenu() {
           <Typography
             variant="h6"
             noWrap
+            id='main-header'
             component="a"
             href="#app-bar-with-responsive-menu"
             sx={{

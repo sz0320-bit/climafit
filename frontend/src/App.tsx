@@ -4,20 +4,21 @@ import TopMenu from "./core/TopMenu/TopMenu";
 import { createTheme, ThemeProvider, CssBaseline } from "@mui/material";
 import { grey } from "@mui/material/colors";
 import axios from "axios";
+import ClothingItemDisplay from "./clothing-items/ClothingItems";
 
 interface Location {
   latitude: number;
   longitude: number;
 }
 
-interface WeatherData {
-  time: string;            // ISO 8601 formatted date string
-  interval: number;        // Interval in seconds (900 here represents 15 minutes)
-  temperature_2m: number;  // Temperature in degrees Celsius
-  rain: number;            // Rain volume in mm
-  showers: number;         // Showers volume in mm
-  snowfall: number;        // Snowfall volume in mm
-  wind_speed_10m: number;  // Wind speed in meters per second at 10 meters height
+export interface WeatherData {
+  time: string; // ISO 8601 formatted date string
+  interval: number; // Interval in seconds (900 here represents 15 minutes)
+  temperature_2m: number; // Temperature in degrees Celsius
+  rain: number; // Rain volume in mm
+  showers: number; // Showers volume in mm
+  snowfall: number; // Snowfall volume in mm
+  wind_speed_10m: number; // Wind speed in meters per second at 10 meters height
 }
 
 // Create a custom theme
@@ -42,7 +43,9 @@ const theme = createTheme({
 
 function App() {
   const [location, setLocation] = React.useState<null | Location>(null);
-  const [weatherData, setWeatherData] = React.useState<null | WeatherData>(null);
+  const [weatherData, setWeatherData] = React.useState<null | WeatherData>(
+    null
+  );
   const [error, setError] = React.useState<string | null>(null);
 
   React.useEffect(() => {
@@ -54,8 +57,10 @@ function App() {
             longitude: position.coords.longitude,
           });
         },
-        (error) => {
-          setError(error.message);
+        (e) => {
+          setError(e.message);
+          console.log(error);
+          
         }
       );
     } else {
@@ -88,25 +93,16 @@ function App() {
           <TopMenu></TopMenu>
         </div>
 
-        <div className="w-full flex items-center justify-center h-full border-white flex-col">
-          <div>
-            {location ? (
-              <div>
-                Latitude: {location.latitude}
-                <br />
-                Longitude: {location.longitude}
-              </div>
-            ) : (
-              <div>{error}</div>
-            )}
-          </div>
+        <div className="w-full flex  h-full border-white flex-col">
           <div>
             {weatherData ? (
-              <div>
-                Current Temperature: {weatherData?.temperature_2m?.toFixed(1) + ' F'}
+              <div className="w-full h-full">
+                <ClothingItemDisplay
+                  weatherData={weatherData}
+                ></ClothingItemDisplay>
               </div>
             ) : (
-              <div>{'Could Not Load Weather Info'}</div>
+              <div className="w-full h-full justify-center items-center p-3">{"Could Not Load Weather Info"}</div>
             )}
           </div>
         </div>
