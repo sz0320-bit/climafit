@@ -1,0 +1,21 @@
+{
+  "name": "climafit",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sz0320-bit/climafit.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sz0320-bit/climafit/issues"
+  },
+  "homepage": "https://github.com/sz0320-bit/climafit#readme",
+  "devDependencies": {},
+  "description": ""
+}

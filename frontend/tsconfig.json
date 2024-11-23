@@ -1,10 +1,15 @@
 {
   "compilerOptions": {
     "jsx": "react-jsx", // this line
+    "module": "ESNext",    // Ensure compatibility with Cypress and Node.js
+    "target": "ESNext",      // Latest JavaScript version
+    "moduleResolution": "Node",  // Cypress needs Node resolution
+    "esModuleInterop": true,  // Ensure proper module imports
+    "strict": true,          // Enforce strict type-checking
+    "types": ["cypress"], 
   },
-  "files": [],
-  "references": [
-    { "path": "./tsconfig.app.json" },
-    { "path": "./tsconfig.node.json" }
+  "include": [
+    "node_modules/cypress",  // Include Cypress modules
+    "cypress/**/*.ts"        // Include Cypress test files
   ]
 }
