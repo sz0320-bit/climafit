@@ -400,7 +400,7 @@ const ClothingItemDisplay: React.FC<InputParam> = (properties: InputParam) => {
   };
 
   return (
-    <div style={{ padding: "20px" }}>
+    <div className="ClothingItemDisplay" style={{ padding: "20px" }}>
       <Typography variant="h4" gutterBottom>
         Filter Clothing Items
       </Typography>

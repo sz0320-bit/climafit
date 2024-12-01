@@ -6,7 +6,7 @@
     "moduleResolution": "Node",  // Cypress needs Node resolution
     "esModuleInterop": true,  // Ensure proper module imports
     "strict": true,          // Enforce strict type-checking
-    "types": ["cypress"], 
+    "types": ["cypress", "jest", "@testing-library/jest-dom"], 
   },
   "include": [
     "node_modules/cypress",  // Include Cypress modules

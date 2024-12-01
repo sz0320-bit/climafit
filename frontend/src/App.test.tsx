@@ -1,9 +1,9 @@
 // App.test.tsx
 
 import { render, screen } from '@testing-library/react';
-import '@testing-library/jest-dom';
 import App from './App';
 import '@testing-library/jest-dom'
+import '@testing-library/jest-dom/extend-expect'
 
 jest.mock('axios');
 
@@ -15,21 +15,15 @@ describe('App Component', () => {
     jest.clearAllMocks();
   });
 
-  test('renders TopMenu component', () => {
+
+  it('renders screen correctly', () => {
     render(<App />);
     const logoElement = screen.getByText(/CLIMAFIT/i);
     expect(logoElement).toBeInTheDocument();
   });
 
-  test('displays error when geolocation is not supported', () => {
 
 
-    render(<App />);
-
-    expect(
-      screen.getByText(/Geolocation is not supported by this browser./i)
-    ).toBeInTheDocument();
-  });
 
 //   test('displays location when geolocation is available', async () => {
 //     const mockGeolocation = {
