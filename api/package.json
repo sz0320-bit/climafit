@@ -7,7 +7,7 @@
     "dev:hot": "nodemon --exec \"npm run dev\" --watch ./src -e ts",
     "lint": "npx eslint ./src",
     "lint:tests": "npx eslint ./spec",
-    "start": " node -r ./preload.js ./dist",
+    "start": " node -r ./dist",
     "test": " npx ts-node ./spec",
     "test:hot": "nodemon --exec \"npm run test\" --watch ./src --watch ./spec -e ts"
   },

@@ -3,14 +3,14 @@ import * as dotenv from 'dotenv';
 import EnvVars from "./common/EnvVars";
 import path from "path";
 
-dotenv.config();
+dotenv.config({ path: path.resolve(__dirname, '.env') });
 
 
 export const AppDataSource = new DataSource({
   type: "postgres",
   host: "localhost",
   port: 5432,
-  username: 'postgres',
+  url: process.env.DATABASE_URL, // Use the connection string directly
   password: EnvVars.pass,
   database: EnvVars.dbName,
   synchronize: true,
