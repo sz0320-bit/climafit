@@ -1,1 +1,1 @@
-{"root":["./src/app.cy.tsx","./src/app.test.tsx","./src/app.tsx","./src/main.tsx","./src/vite-env.d.ts","./src/clothing-items/clothingitems.tsx","./src/clothing-items/clothingitemsclothingitemdisplay.cy.tsx","./src/core/topmenu/topmenu.cy.tsx","./src/core/topmenu/topmenu.test.tsx","./src/core/topmenu/topmenu.tsx"],"errors":true,"version":"5.6.3"}
+{"root":["./src/app.test.tsx","./src/app.tsx","./src/main.tsx","./src/vite-env.d.ts","./src/clothing-items/clothingitems.tsx","./src/core/topmenu/topmenu.test.tsx","./src/core/topmenu/topmenu.tsx"],"version":"5.6.3"}
