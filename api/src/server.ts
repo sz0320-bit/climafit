@@ -38,6 +38,12 @@ AppDataSource.initialize()
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
+const cors = require("cors");
+const corsOptions = {
+  origin: true,
+};
+app.use(cors(corsOptions));
+
 // Show routes called in console during development
 if (EnvVars.NodeEnv === NodeEnvs.Dev.valueOf()) {
   app.use(morgan('dev'));

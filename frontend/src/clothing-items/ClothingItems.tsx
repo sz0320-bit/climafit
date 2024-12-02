@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useEffect, useState } from "react";
 import {
   Card,
@@ -303,6 +304,7 @@ const determineWeatherCondition = (
 };
 
 const filterClothingItems = (
+  data: any[],
   temperature: number,
   isDay: number,
   rain: number,
@@ -319,7 +321,7 @@ const filterClothingItems = (
   );
 
   // Filter clothing items based on the determined weather condition
-  return clothingItems.filter((item) => {
+  return data.filter((item) => {
     const matchesTemp =
       temperature >= item.minTemp && temperature <= item.maxTemp;
     const matchesWeather = item.suitableWeather.includes(weatherCondition);
@@ -327,8 +329,8 @@ const filterClothingItems = (
     // Type and color matches are optional (default to true if not specified)
     const matchesType =
       !typeFilter || typeFilter === "All" || item.type === typeFilter;
-    const matchesColor = colorPreference.length
-      ? colorPreference
+      //@ts-ignore
+    const matchesColor = colorPreference.length ? colorPreference
           .map((color) => color.toLowerCase())
           .includes(item.color.toLowerCase())
       : true;
@@ -341,6 +343,31 @@ const filterClothingItems = (
 
 // React Component
 const ClothingItemDisplay: React.FC<InputParam> = (properties: InputParam) => {
+
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch('https://climafit-mr1x-1a6wcxhzy-sz0320bits-projects.vercel.app/clothing-items');
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        const result = await response.json();
+        setData(result);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+
   const [weatherData] = useState<WeatherData>(properties.weatherData);
   const [temperature, setTemperature] = useState<number>(
     weatherData?.temperature_2m ?? 40
@@ -350,6 +377,7 @@ const ClothingItemDisplay: React.FC<InputParam> = (properties: InputParam) => {
   const [colorPreference, setColorPreference] = useState<string[]>([]);
 
   const filteredItems = filterClothingItems(
+    data,
     temperature,
     parseInt(weatherData?.time),
     weatherData?.rain,
