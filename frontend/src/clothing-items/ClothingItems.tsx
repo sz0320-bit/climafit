@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useEffect, useState } from "react";
 import {
@@ -351,14 +352,14 @@ const ClothingItemDisplay: React.FC<InputParam> = (properties: InputParam) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('https://climafit-mr1x-1a6wcxhzy-sz0320bits-projects.vercel.app/clothing-items');
+        const response = await fetch('https://climafit-mr1x.vercel.app/clothing-items');
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
         const result = await response.json();
         setData(result);
       } catch (err) {
-        setError(err.message);
+        setError((err as any).message);
       } finally {
         setLoading(false);
       }

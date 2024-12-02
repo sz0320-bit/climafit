@@ -1,15 +1,24 @@
 {
   "compilerOptions": {
-    "jsx": "react-jsx", // this line
-    "module": "ESNext",    // Ensure compatibility with Cypress and Node.js
-    "target": "ESNext",      // Latest JavaScript version
-    "moduleResolution": "Node",  // Cypress needs Node resolution
-    "esModuleInterop": true,  // Ensure proper module imports
-    "strict": true,          // Enforce strict type-checking
-    "types": ["cypress", "jest", "@testing-library/jest-dom"], 
+    "jsx": "react-jsx",
+    "module": "ESNext",
+    "target": "ESNext",
+    "moduleResolution": "Node",
+    "allowImportingTsExtensions":true,
+    "emitDeclarationOnly": true,
+    "declaration": true,
+    "esModuleInterop": true,
+    "strict": true,
+    "types": [], // No Jest or Cypress types here
+    "skipLibCheck": true // Skip type checking for library files
   },
   "include": [
-    "node_modules/cypress",  // Include Cypress modules
-    "cypress/**/*.ts"        // Include Cypress test files
+    "src/**/*" // Include only app source files
+  ],
+  "exclude": [
+    "node_modules",
+    "cypress",   // Exclude Cypress tests
+    "**/*.test.ts",
+    "**/*.spec.ts"
   ]
 }
