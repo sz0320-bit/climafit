@@ -13,6 +13,7 @@ import {
   SelectChangeEvent,
   FormControl,
   InputLabel,
+  CardMedia,
 } from "@mui/material";
 import { WeatherData } from "../App";
 
@@ -330,7 +331,7 @@ const filterClothingItems = (
     // Type and color matches are optional (default to true if not specified)
     const matchesType =
       !typeFilter || typeFilter === "All" || item.type === typeFilter;
-      //@ts-ignore
+      //@ts-expect-error maybe.
     const matchesColor = colorPreference.length ? colorPreference
           .map((color) => color.toLowerCase())
           .includes(item.color.toLowerCase())
@@ -477,7 +478,9 @@ const ClothingItemDisplay: React.FC<InputParam> = (properties: InputParam) => {
         </Grid>
         <Grid item xs={12} sm={3}>
           <FormControl fullWidth>
-            <InputLabel id="demo-multiple-name-label">Color Preference</InputLabel>
+            <InputLabel id="demo-multiple-name-label">
+              Color Preference
+            </InputLabel>
             <Select
               labelId="demo-multiple-name-label"
               id="demo-multiple-name"
@@ -487,7 +490,7 @@ const ClothingItemDisplay: React.FC<InputParam> = (properties: InputParam) => {
               fullWidth
               onChange={handleChange}
               input={<OutlinedInput label="Color Preference" />}
-              >
+            >
               {availableColors.map((name) => (
                 <MenuItem key={name} value={name}>
                   {name}
@@ -498,38 +501,52 @@ const ClothingItemDisplay: React.FC<InputParam> = (properties: InputParam) => {
         </Grid>
       </Grid>
 
-      <Grid container spacing={4}>
-        {filteredItems.map((item) => (
-          <Grid item xs={12} sm={6} md={4} key={item.id}>
-            <Card>
-              {/* <CardMedia
-                component="img"
-                height="140"
-                image={item.imageLink}
-                alt={item.name}
-              /> */}
-              <CardContent>
-                <Typography variant="h6">{item.name}</Typography>
-                <Typography variant="body2" color="textSecondary">
-                  Brand: {item.brand}
-                </Typography>
-                <Typography variant="body2" color="textSecondary">
-                  Type: {item.type}
-                </Typography>
-                <Typography variant="body2" color="textSecondary">
-                  Color: {item.color}
-                </Typography>
-                <Typography variant="body2" color="textSecondary">
-                  Temp Range: {item.minTemp}°F - {item.maxTemp}°F
-                </Typography>
-                <Typography variant="body2" color="textSecondary">
-                  Weather: {item.suitableWeather.join(", ")}
-                </Typography>
-              </CardContent>
-            </Card>
-          </Grid>
-        ))}
-      </Grid>
+      <Grid container spacing={4} justifyContent="space-between">
+  {filteredItems.map((item) => (
+    <Grid 
+      item 
+      xs={12} 
+      sm={6} 
+      md={4} 
+      lg={3} 
+      xl={2} 
+      key={item.id} 
+      style={{ display: 'flex', justifyContent: 'center' }} // Ensures proper centering
+    >
+      <Card style={{ width: '100%', maxWidth: '300px' }}> 
+        <CardMedia
+          component="img"
+          src={item.imageLink !== undefined ?  item.imageLink : "https://res.cloudinary.com/dsudd37yr/image/upload/f_auto,q_auto/cld-sample-5"}
+          alt={item.name}
+          style={{
+            objectFit: 'fill', // Ensures image maintains aspect ratio
+            width: '100%', // Makes it stretch to the width of the card
+            height: '300px', // Adjust height as necessary
+          }}
+        />
+        <CardContent>
+          <Typography variant="h6">{item.name}</Typography>
+          <Typography variant="body2" color="textSecondary">
+            Brand: {item.brand}
+          </Typography>
+          <Typography variant="body2" color="textSecondary">
+            Type: {item.type}
+          </Typography>
+          <Typography variant="body2" color="textSecondary">
+            Color: {item.color}
+          </Typography>
+          <Typography variant="body2" color="textSecondary">
+            Temp Range: {item.minTemp}°F - {item.maxTemp}°F
+          </Typography>
+          <Typography variant="body2" color="textSecondary">
+            Weather: {item.suitableWeather.join(", ")}
+          </Typography>
+        </CardContent>
+      </Card>
+    </Grid>
+  ))}
+</Grid>
+
     </div>
   );
 };
